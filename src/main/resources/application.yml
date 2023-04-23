@@ -1,0 +1,8 @@
+
+#身份证识别图片保存路径
+idcard:
+  step:
+    dir: "C:/Users/csht/Desktop/images/idcard"
+    show: "true"
+  temp:
+    dir: "C:/Users/csht/Desktop/images/idcard/1"
