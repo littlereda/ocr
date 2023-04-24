@@ -12,6 +12,7 @@ import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDManager;
 import ai.djl.repository.zoo.ZooModel;
 import com.example.demo.config.ConfUtil;
+import javafx.scene.transform.Rotate;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @Service
-public class
-OrcService {
+public class OrcService {
 
     @Autowired
     private ZooModel<Image, DetectedObjects> detectionModel;
@@ -58,12 +58,22 @@ OrcService {
 
             //识别框框中文字  是否旋转
             StringBuilder build = new StringBuilder();
+            int i = 0;
             for(DetectedObjects.DetectedObject box : boxes){
             	 Image sample = getSubImage(img, box.getBoundingBox());
             	 //判断是否旋转
-            	 //Classifications cl = direction.predict(sample);
-            	 //识别的文字
-            	 build.append("word:").append(recgonition.predict(sample)).append("\n");
+            	 Classifications cl = direction.predict(sample);
+                if(false){
+                    Image image = rotateImg(sample);
+                    build.append("word:").append(recgonition.predict(image)).append("\n");
+                    Thumbnails.of((BufferedImage)image.getWrappedImage()).scale(1).toFile(ConfUtil.stepLocal+File.separator+ i +"split.png");
+                }else{
+                    build.append("word:").append(recgonition.predict(sample)).append("\n");
+                    Thumbnails.of((BufferedImage)sample.getWrappedImage()).scale(1).toFile(ConfUtil.stepLocal+File.separator+ i +"split.png");
+                }
+
+                //识别的文字
+            	 i++;
             }
             return build.toString();
         } catch (Exception e) {

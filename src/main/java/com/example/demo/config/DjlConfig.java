@@ -46,8 +46,8 @@ public class DjlConfig {
     	Criteria<Image, Classifications> criteria1 = Criteria.builder()
                 .optEngine("PaddlePaddle")
                 .setTypes(Image.class, Classifications.class)
-//                .optModelUrls("https://resources.djl.ai/test-models/paddleOCR/mobile/cls.zip")
-                .optModelPath(Paths.get("D:\\work\\open-anpr\\DJL+PaddleORC\\ch_ppocr_mobile_v2.0_cls_infer.tar"))
+                .optModelUrls("https://resources.djl.ai/test-models/paddleOCR/mobile/cls.zip")
+//                .optModelPath(Paths.get("D:\\work\\open-anpr\\DJL+PaddleORC\\ch_ppocr_mobile_v2.0_cls_infer.tar"))
                 .optTranslator(new PpWordRotateTranslator())
                 .build();
 		return ModelZoo.loadModel(criteria1);
@@ -63,7 +63,7 @@ public class DjlConfig {
                 .optEngine("PaddlePaddle")
                 .setTypes(Image.class, String.class)
 //                .optModelUrls("https://resources.djl.ai/test-models/paddleOCR/mobile/rec_crnn.zip")
-                .optModelPath(Paths.get("D:\\work\\open-anpr\\DJL+PaddleORC\\ch_PP-OCRv3_rec_infer.tar"))
+                .optModelPath(Paths.get("D:\\work\\open-anpr\\DJL+PaddleORC\\rec_crnn.zip"))
                 .optTranslator(new PpWordRecognitionTranslator())
                 .build();
     	return ModelZoo.loadModel(criteria1);

@@ -20,7 +20,7 @@ class OrcServiceTest {
 
     @Test
     void test(){
-        File temp = new File("C:\\Users\\csht\\Desktop\\images\\temp2.png");
+        File temp = new File("C:\\Users\\csht\\Desktop\\images\\22.jpg");
         String code = orcService.orc(temp.getAbsolutePath());
         System.out.println(code);
     }
